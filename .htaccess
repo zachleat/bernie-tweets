@@ -8,6 +8,7 @@ RewriteRule ^([^/\.]+)/$ /$1 [R,L]
 
 # Tweet URL
 RewriteCond %{REQUEST_URI} !\.(js|ico|gif|jpg|png|css)$
+RewriteRule ^([^/\.]+)/status/([^/\.]+)$ /bernie/$1/$2 [R,L]
 RewriteRule ^([^/\.]+)/([^/\.]+)$ index.php?user=$1&id=$2 [L]
 
 </IfModule>

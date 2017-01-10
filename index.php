@@ -195,7 +195,7 @@
 					newtweet( id[ 0 ] );
 				}
 				if( user ) {
-					history.replaceState( {}, "", "/" + user[ 1 ] + "/" + id[ 0 ] );
+					history.replaceState( {}, "", "<?php echo $SUBDIR; ?>" + user[ 1 ] + "/" + id[ 0 ] );
 				}
 
 				if( event.type === "input" ) {

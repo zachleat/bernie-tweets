@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+RewriteBase /bernie/
+
+# Remove trailing slashes
+RewriteRule ^([^/\.]+)/$ /$1 [R,L]
+
+# Tweet URL
+RewriteCond %{REQUEST_URI} !\.(js|ico|gif|jpg|png|css)$
+RewriteRule ^([^/\.]+)/([^/\.]+)$ index.php?user=$1&id=$2 [L]
+
+</IfModule>

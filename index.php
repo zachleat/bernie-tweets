@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Bernie’s Posterboard Tweets</title>
+		<title>Bernie’s Tweets</title>
 		<style>
 		* {
 			box-sizing: border-box;
@@ -12,7 +12,7 @@
 		body {
 			background-color: black;
 			/* courtesy of http://www.nbcnews.com/news/us-news/bernie-sanders-makes-big-statement-oversized-trump-tweet-n703296 */
-			background-image: url(<?php echo $SUBDIR; ?>img/original.jpg);
+			background-image: url(<?php echo $SUBDIR; ?>img/bg-rerendered.jpg);
 			background-size: 100% auto;
 			background-repeat: no-repeat;
 			background-position: 0 0;
@@ -45,8 +45,9 @@
 		.js .embed {
 			display: block;
 		}
+		/* Twitter widget overrides */
 		twitterwidget::shadow .EmbeddedTweet {
-			border: none;
+			border: none !important;
 		}
 		.capture {
 			position: absolute;
@@ -71,7 +72,7 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			width: 34em;
+			width: 26em;
 			height: 2em;
 			background-color: rgba(0, 0, 0, .2);
 			z-index: -1;
@@ -124,6 +125,14 @@
 		.active-tweet input[type="submit"] {
 			display: none;
 		}
+		@media ( max-width: 63.9375em ) { /* 1023px */
+			body {
+				background-position: 0 1.5em;
+			}
+			.embed {
+				top: 1.5em;
+			}
+		}
 		</style>
 		<script>
 		document.documentElement.className += " js";
@@ -131,7 +140,7 @@
 	</head>
 	<body>
 		<form>
-			<label class="capture" for="capture">Bernie’s Posterboard Tweets: <a href="<?php echo $SUBDIR; ?>realDonaldTrump/266038556504494082">Sample</a> <a href="<?php echo $SUBDIR; ?>realDonaldTrump/596338364187602944">Original</a> <a href="<?php echo $SUBDIR; ?>zachleat/785495065913274369">Classic</a></label>
+			<label class="capture" for="capture">Bernie’s Tweets: <a href="<?php echo $SUBDIR; ?>realDonaldTrump/266038556504494082">Sample</a> <a href="<?php echo $SUBDIR; ?>realDonaldTrump/596338364187602944">Original</a> <a href="<?php echo $SUBDIR; ?>zachleat/785495065913274369">Classic</a></label>
 			<input type="checkbox" id="capture" class="captured">
 			<div class="active-tweet">
 				<label>

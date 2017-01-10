@@ -220,6 +220,10 @@
 
 				newtweet( id );
 <?php
+				} else {
+?>
+				newtweet( "785495065913274369" );
+<?php
 				}
 ?>
 			}

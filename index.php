@@ -18,7 +18,7 @@
 			background-position: 0 0;
 			font-family: sans-serif;
 			margin: 0;
-			padding: 0;
+			padding: 4.5% 0 0 0;
 			overflow: hidden;
 		}
 		/* Form is an enhancement */
@@ -30,7 +30,7 @@
 		}
 		.embed {
 			display: none;
-			position: absolute;
+			position: relative;
 			left: 51.7%;
 			top: 0;
 			width: 500px;
@@ -162,25 +162,17 @@
 				// 27.9527559% of image/viewport width
 				// 498 static width
 				// 498 * scaleX / windowWidth = .2795
-				var viewportWidth = window.innerWidth
-					|| document.documentElement.clientWidth
-					|| document.body.clientWidth;
+				var viewportWidth = document.body.clientWidth;
 
 				var scaleX = .279527559 * viewportWidth / 498;
 
 				elementHeight = parseInt( elementHeight, 10 );
 				if( elementHeight && elementHeight > 373 ) {
-					var scaleY = 373 / elementHeight;
-					scale.style.transform = "scale( " + Math.min( scaleX, scaleY ) + " )";
+					var scaleY = ( 373 / elementHeight );
+					scale.style.transform = "scale( " + scaleY + " )";
 				}
 
-				// aspect ratio of image: 1776/963
-				// height of image: viewportWidth / aspectratio
-				var translateYAdjustor = 120;
-				var imageAspectRatio = 1776 / 963;
-				var translateY = viewportWidth * ( translateYAdjustor / 1440 ) / imageAspectRatio;
-
-				embed.style.transform = "rotateX( 0 ) rotateY( 2deg ) rotateZ( 2.1deg ) translateY( " + translateY + "px ) scale( " + scaleX + ")";
+				embed.style.transform = "rotateX( 0 ) rotateY( 2deg ) rotateZ( 2.1deg ) scale( " + scaleX + ")";
 			}
 
 			window.addEventListener( "DOMContentLoaded", update, false );

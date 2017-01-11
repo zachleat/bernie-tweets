@@ -162,9 +162,7 @@
 				// 27.9527559% of image/viewport width
 				// 498 static width
 				// 498 * scaleX / windowWidth = .2795
-				var viewportWidth = document.body.clientWidth;
-
-				var scaleX = .279527559 * viewportWidth / 498;
+				var scaleX = .279527559 * document.body.clientWidth / 498;
 
 				elementHeight = parseInt( elementHeight, 10 );
 				if( elementHeight && elementHeight > 373 ) {

@@ -39,7 +39,7 @@
 			background-color: #fff;
 			transform-origin: 0 0;
 			z-index: 2;
-			transform: rotateX( 0 ) rotateZ( 1.9deg ) scale( .575 );
+			transform: rotateX( 0 ) rotateZ( 1.9deg );
 			/*outline: 4px solid rgba( 255, 0, 0, .5);*/
 		}
 		.js .embed {
@@ -150,10 +150,15 @@
 				<input type="submit" value="Change">
 			</div>
 		</form>
-		<div class="embed" id="embed"></div>
+		<div class="embed" id="embed">
+			<div class="scale" id="scale"></div>
+		</div>
 		<script>
 		(function() {
-			function update() {
+			function update( elementHeight ) {
+				var embed = document.getElementById( "embed" );
+				var scale = document.getElementById( "scale" );
+
 				// 27.9527559% of image/viewport width
 				// 498 static width
 				// 498 * scaleX / windowWidth = .2795
@@ -161,8 +166,13 @@
 					|| document.documentElement.clientWidth
 					|| document.body.clientWidth;
 
-				var embed = document.getElementById( "embed" );
 				var scaleX = .279527559 * viewportWidth / 498;
+
+				elementHeight = parseInt( elementHeight, 10 );
+				if( elementHeight && elementHeight > 373 ) {
+					var scaleY = 373 / elementHeight;
+					scale.style.transform = "scale( " + Math.min( scaleX, scaleY ) + " )";
+				}
 
 				// aspect ratio of image: 1776/963
 				// height of image: viewportWidth / aspectratio
@@ -170,20 +180,23 @@
 				var imageAspectRatio = 1776 / 963;
 				var translateY = viewportWidth * ( translateYAdjustor / 1440 ) / imageAspectRatio;
 
-				embed.style.transform = "rotateX( 0 ) rotateZ( 1.9deg ) translateY( " + translateY + "px ) scale( " + scaleX + " )";
+				embed.style.transform = "rotateX( 0 ) rotateY( 2deg ) rotateZ( 2.1deg ) translateY( " + translateY + "px ) scale( " + scaleX + ")";
 			}
 
 			window.addEventListener( "DOMContentLoaded", update, false );
 			window.addEventListener( "resize", update, false );
 
 			function newtweet( id ) {
-				var embed = document.getElementById( "embed" );
-				embed.innerHTML = "";
+				var scale = document.getElementById( "scale" );
+				scale.innerHTML = "";
 				twttr.widgets.createTweet(
 					id,
-					embed,
+					scale,
 					{}
-				);
+				).then(function( el ) {
+					var height = el.offsetHeight;
+					update( height );
+				});
 			}
 
 			function onchange( event ) {

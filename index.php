@@ -201,8 +201,8 @@
 
 			function onchange( event ) {
 				var val = this.value;
-				var user = val.match( /([^\/]+)\/status\/\d{2,}/ );
-				var id = val.match( /\d{2,}/ );
+				var user = val.match( /([^\/]+)\/status\/\d{6,}/ );
+				var id = val.match( /\d{6,}/ );
 
 				if( id ) {
 					newtweet( id[ 0 ] );
